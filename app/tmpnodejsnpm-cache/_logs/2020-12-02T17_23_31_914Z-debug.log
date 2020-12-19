@@ -1,0 +1,33 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'react-bootsrap' ]
+2 info using npm@6.9.0
+3 info using node@v10.16.3
+4 verbose npm-session 60963f7c8037909b
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 http fetch GET 404 https://registry.npmjs.org/react-bootsrap 325ms
+8 http fetch GET 404 https://registry.npmjs.org/react-bootsrap 113ms
+9 silly fetchPackageMetaData error for react-bootsrap@latest 404 Not Found - GET https://registry.npmjs.org/react-bootsrap - Not found
+10 timing stage:rollbackFailedOptional Completed in 2ms
+11 timing stage:runTopLevelLifecycles Completed in 3411ms
+12 verbose stack Error: 404 Not Found - GET https://registry.npmjs.org/react-bootsrap - Not found
+12 verbose stack     at res.buffer.catch.then.body (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-fetch\check-response.js:104:15)
+12 verbose stack     at process._tickCallback (internal/process/next_tick.js:68:7)
+13 verbose statusCode 404
+14 verbose pkgid react-bootsrap@latest
+15 verbose cwd C:\sql-data-graph\app
+16 verbose Windows_NT 10.0.18363
+17 verbose argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "react-bootsrap"
+18 verbose node v10.16.3
+19 verbose npm  v6.9.0
+20 error code E404
+21 error 404 Not Found - GET https://registry.npmjs.org/react-bootsrap - Not found
+22 error 404
+23 error 404 'react-bootsrap@latest' is not in the npm registry.
+24 error 404 You should bug the author to publish it (or use the name yourself!)
+25 error 404 Note that you can also install from a
+26 error 404 tarball, folder, http url, or git url.
+27 verbose exit [ 1, true ]
