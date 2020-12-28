@@ -10,18 +10,19 @@ import TableSelect from './components/tableSelect';
 import BreakDown from './components/breakdown';
 import axios from 'axios';
 import ModalUpload from './components/modalUpload';
+import generateChart from './helper/chartGenerate';
 
 function App() {
-  const [currChart, setCurrChart] = useState(undefined);
-  const [query, setQuery] = useState('');
   const [tableList, setTableList] = useState([]) as any;
   const tableRef = useRef([]) as any;
-  const [currTable, setCurrTable] = useState('');
   const [queryRes, setQueryRes] = useState([]) as any;
-  const [xAxis, setXAxis] = useState('');
-  const [yAxis, setYAxis] = useState('');
-  const [breakdown, setBreakDown] = useState('');
-  const [lineTestData, setLineTestData] = useState({});
+  const [chartData, setchartData] = useState<object>({});
+  const [currChart, setCurrChart] = useState<undefined>(undefined);
+  const [query, setQuery] = useState<string>('');
+  const [currTable, setCurrTable] = useState<string>('');
+  const [xAxis, setXAxis] = useState<string>('');
+  const [yAxis, setYAxis] = useState<string>('');
+  const [breakdown, setBreakDown] = useState<string>('');
 
   if(currTable === '' && tableRef.current.length === 1) {
     setCurrTable(tableRef.current[0]);
@@ -38,89 +39,24 @@ function App() {
   }, []);
 
   const generateChartData = ():void => {
-    let valMap: Map<string, object> = new Map();
-    if(xAxis === '' && queryRes.length > 0) {
-      setXAxis(Object.entries(queryRes[0])[0][0]);
-    } 
-    
-    if(yAxis === '' && queryRes.length > 0) {
-      setYAxis(Object.entries(queryRes[0])[0][0]);
-    }
-
-    if(breakdown === '' && queryRes.length > 0) {
-      setBreakDown(Object.entries(queryRes[0])[0][0]);
-    }
-
-    console.log(breakdown, xAxis, yAxis);
-    for(let i = 0; i < queryRes.length; i++) {
-      if(!valMap.has(queryRes[i][xAxis])) {
-        let valObj: object = {};
-        valObj[queryRes[i][breakdown]] = queryRes[i][yAxis];
-        valMap.set(queryRes[i][xAxis], valObj);
-      } else {
-        let obj: object = valMap.get(queryRes[i][xAxis])!;
-        if(obj![queryRes[i][breakdown]]) {
-          obj![queryRes[i][breakdown]] += queryRes[i][yAxis];
-        }
-        valMap.set(queryRes[i][xAxis], obj!);
-      }
-    }
-
-    let data : Array<number> = ([...Array(valMap.size).fill(0)]);
-    let labelsData: Array<any> = [];
-    let iter: number = 0;
-    let dataMap = new Map();
-    for(const [key, value] of valMap.entries()) {
-      labelsData.push(key);
-      for(const x in value) {
-        if(!dataMap.has(x)) {
-          let tempData = [...data];
-          tempData[iter] = value[x];
-          dataMap.set(x, tempData);
-        } else {
-          let addData = dataMap.get(x);
-          addData[iter] = value[x];
-          dataMap.set(x, addData);
-        }
-      }
-      iter++;
-    }
-
-    let dataSets: {label: string, data: Array<number>, fill: boolean, backGroundColor: string}[] = [];
-    for(const [x, y] of dataMap.entries()) {
-      dataSets.push({
-        label: `${breakdown} ${x}`,
-        data: y,
-        fill: true,
-        backGroundColor: "rgba(75,192,192,0.2)"
-      })
-    }
-
-    setLineTestData({
-      labels: labelsData,
-      datasets: dataSets
-    });
+    setchartData((generateChart(xAxis, yAxis, breakdown, queryRes)));
   }
 
   const postFile = (file):void => {
     const formData = new FormData();
     formData.append('file', file);
     axios.post('http://localhost:300/table', formData).then((postedTable) => {
-      // setTableList([...tableList, postedTable.data.tableName]);
       tableRef.current.push(postedTable.data.tableName);
       setTableList([...tableList, postedTable.data.tableName]);
-      // setCurrTable(postedTable.data.tableName);
     });
   }
 
-  const postQuery = () => {
+  const postQuery = ():void => {
     const queryTable = query.split(' ').join('%20');
-
     axios.get(`http://localhost:300/tableData?table=${currTable}&query=${queryTable}`)
     .then((response) => {
       if(response.data.status === 'success') {
         setQueryRes(response.data.details);
-        console.log(response.data.details);
       } else if(response.data.status === 'error') {
         alert(response.data.details.sqlMessage);
       }
@@ -128,9 +64,9 @@ function App() {
   }
 
   const charts: object = {
-    'Line': <LineChart testData={lineTestData}/>,
-    'Bar': <BarChart testData={lineTestData}/>,
-    'Pie': <PieChart testData={lineTestData}/>
+    'Line': <LineChart testData={chartData}/>,
+    'Bar': <BarChart testData={chartData}/>,
+    'Pie': <PieChart testData={chartData}/>
   }
 
   return (

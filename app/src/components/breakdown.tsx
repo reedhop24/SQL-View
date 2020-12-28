@@ -1,15 +1,13 @@
 import React from 'react';
-import XAxis from './breakdown/xAxis';
-import YAxis from './breakdown/yAxis';
 import BreakDownBy from './breakdown/breakdownBy';
 import Generate from './breakdown/generate'
 
 const BreakDown = ({breakdownVals, xAxis, yAxis, breakD, createTable}):JSX.Element => {
     return(
         <div>
-            <XAxis setXAxis={(x) => xAxis(x)}  xAxis={breakdownVals}/>
-            <YAxis setYAxis={(y) => yAxis(y)} yAxis={breakdownVals}/>
-            <BreakDownBy setBreakdown={(b) => breakD(b)} breakdown={breakdownVals}/>
+            <BreakDownBy setBreakdown={(x) => xAxis(x)} breakdown={breakdownVals} label="X-Axis: "/>
+            <BreakDownBy setBreakdown={(y) => yAxis(y)} breakdown={breakdownVals} label="Y-Axis: "/>
+            <BreakDownBy setBreakdown={(b) => breakD(b)} breakdown={breakdownVals} label="Breakdown By: "/>
             <Generate generateChart={createTable}/>
         </div>
         );

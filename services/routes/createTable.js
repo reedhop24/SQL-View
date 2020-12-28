@@ -11,7 +11,7 @@ router.use(upload());
 const con = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
-    password : '',
+    password : 'password',
     database: 'user_tables'
 });
 
@@ -21,6 +21,7 @@ router.post('/table', (req, res) => {
         res.json({'error': 'No file specified'});
         return;
     }
+
     const data = sheet.Sheets.Sheet1;
     let tableName = req.files.file.name.split('.')[0];
     let iterTotal = 0;
