@@ -6,7 +6,13 @@ function PieChart({testData}):JSX.Element {
     labels: testData.labels,
     datasets: testData.datasets
   };
-  return <Pie data={data}/>
+  return <div className="item-container" style={{marginLeft:"5px"}}>
+    <Pie data={data} options={{
+      legend: {
+        display: false
+      }
+    }}/>
+  </div> 
 }
 
 export default PieChart;

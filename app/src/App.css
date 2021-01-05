@@ -1,5 +1,11 @@
 .App {
   text-align: center;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: #ffffff;
 }
 
 .App-logo {
@@ -7,42 +13,37 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .chart-container {
   justify-content: center;
+  height:30%;
+  margin-left:40px;
+}
+
+.item-container {
+  border: 1px solid #a3a0a0;
+  border-radius: 5px;
+  padding-bottom: 30px;
+  padding-top:30px;
+  width: 100%;
+  margin-left:auto;
+  margin-right:auto;
+  background-color:#ffffff;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .header {
-  margin-bottom: 4%;
+  background-color: #FE7860;
+  width:100%;
+  color:#ffffff;
+  margin-right: auto;
+  margin-left: auto;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius:5px;
+  font-family: 'Public Sans', sans-serif;
+}
+
+h1 {
+  font-size:70px;
 }
 
 .options-container {
@@ -51,23 +52,41 @@
 
 h6 {
   display: inline-block;
-  margin-left: 40px;
-  border: 2px solid;
-  padding: 5px;
+  margin-left: 20px;
+  border: 2px solid #506CF0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left:15px;
+  padding-right:15px;
   border-radius: 4px;
   cursor: pointer;
+  background-color: #506CF0;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  color: #ffffff
+}
+
+.chart-type {
+  margin-left: 50px;
 }
 
 h6:hover {
-  background-color: black;
-  color: white;
-  border: 2px solid #61dafb;
+  background-color: #A7C0CD;
+  border: 2px solid #A7C0CD;
 }
 
 label {
   margin-right:10px;
 }
 
+.breakdown-label {
+  display: block;
+}
+
+.breakdown-input {
+  display: block;
+  width: 90%;
+  margin-bottom: 15px;
+}
 
 #table-input {
   margin-bottom: 5%;
@@ -75,10 +94,11 @@ label {
 
 #select-table {
   padding-left: 40px;
+  text-align:left;
 }
 
 #sql-container {
-  padding-left: 40px;
+  text-align: center;
 }
 
 .row {
@@ -86,9 +106,8 @@ label {
 }
 
 .black-option {
-  background-color: black;
-  color: white;
-  border: 2px solid #61dafb;
+  background-color: #A7C0CD;
+  border: 2px solid #A7C0CD;
 }
 
 .icon {
@@ -101,4 +120,124 @@ label {
 
 h1 {
   display: inline-block;
+}
+
+.breakdown {
+  margin-top: 10px;
+}
+
+#breakdown-container {
+  margin-left:5px;
+}
+
+#table-select {
+  margin-right:5px;
+}
+
+.icon-style {
+  color:#ffffff;
+  font-size:60px;
+}
+
+.icon:hover {
+  color:#506CF0;
+}
+
+#file-modal {
+  height: 220px;
+  text-align:center;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+  display: inline-block;
+  margin-left: 20px;
+  border: 2px solid #506CF0;
+  width:80%;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left:15px;
+  padding-right:15px;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #506CF0;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  color: #ffffff;
+  margin-top:20px;
+}
+
+.custom-file-upload:hover {
+  background-color: #A7C0CD;
+  border: 2px solid #A7C0CD;
+}
+
+p {
+  margin-top:10px;
+}
+
+h4{
+  font-family: 'Public Sans', sans-serif;
+  color:#FE7860;
+}
+
+/* .query-breakpoint {
+  bottom:220px;
+}
+
+.graph-breakpoint {
+  bottom:55px;
+} */
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .query-breakpoint {
+    bottom:65px;
+  }
+  .graph-breakpoint {
+    bottom:13.75px;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .query-breakpoint {
+    bottom:110px;
+  }
+  .graph-breakpoint {
+    bottom:27.5px;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .query-breakpoint {
+    bottom:140px;
+  }
+  .graph-breakpoint {
+    bottom:32px;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .query-breakpoint {
+    bottom:165px;
+  }
+  .graph-breakpoint {
+    bottom:41.25px;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .query-breakpoint {
+    bottom:210px;
+  }
+  .graph-breakpoint {
+    bottom:44px;
+  }
 }

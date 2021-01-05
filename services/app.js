@@ -2,12 +2,13 @@ const express = require('express');
 const app = express();
 const addTable = require('./routes/createTable');
 const queryTable = require('./routes/queryTable');
+const deleteTable = require('./routes/deleteTables');
 const mysql = require('mysql');
 
 const con = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
-    password : 'password',
+    password : '',
     database: 'user_tables'
 });
 
@@ -17,6 +18,7 @@ con.connect(function(err) {
     } else {
         app.use('/', addTable);
         app.use('/', queryTable);
+        app.use('/', deleteTable);
     }
 });
 

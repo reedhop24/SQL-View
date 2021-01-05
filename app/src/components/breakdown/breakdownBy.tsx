@@ -3,9 +3,9 @@ import React, {useState} from 'react';
 const BreakDownBy = ({setBreakdown, breakdown, label}):JSX.Element => {
     const [currBreakdown, setCurrBreakdown] = useState<string>('');;
     return (
-            <div id="select-table">
-                <label htmlFor="breakdown">{label}</label>
-                <select name="breakdown" value={currBreakdown} onChange={(ev) => {
+            <div id="select-table" style={{textAlign:"left"}} className="breakdown">
+                <label className="breakdown-label" htmlFor="breakdown">{label}</label>
+                <select className="breakdown-input" name="breakdown" value={currBreakdown} onChange={(ev) => {
                     let selected = ev.target as HTMLSelectElement;
                     ev.preventDefault();
                     setBreakdown(selected.value);

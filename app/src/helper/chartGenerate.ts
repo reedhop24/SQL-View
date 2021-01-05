@@ -1,6 +1,9 @@
-const generateChart = (xAxis, yAxis, breakdown, queryRes):object => {
+import randomColor from 'randomcolor';
+
+const generateChart = (xAxis, yAxis, breakdown, queryRes, previousRes):object => {
     let valMap: Map<string, object> = new Map();
 
+    //If any value empty then set that to first value
     if(xAxis === '' && queryRes.length > 0) {
       xAxis = Object.entries(queryRes[0])[0][0];
     } 
@@ -12,8 +15,8 @@ const generateChart = (xAxis, yAxis, breakdown, queryRes):object => {
     if(breakdown === '' && queryRes.length > 0) {
       breakdown = Object.entries(queryRes[0])[0][0];
     }
+    
     for(let i = 0; i < queryRes.length; i++) {
-      console.log(queryRes[i][xAxis])
         if(!valMap.has(queryRes[i][xAxis])) {
           let valObj: object = {};
           valObj[queryRes[i][breakdown]] = queryRes[i][yAxis];
@@ -48,15 +51,20 @@ const generateChart = (xAxis, yAxis, breakdown, queryRes):object => {
       }
       iter++;
     }
-    
-    let dataSets: {label: string, data: Array<number>, fill: boolean, backGroundColor: string}[] = [];
+
+    const colors: Array<string> = randomColor({count: dataMap.size});
+    let counter: number = 0;
+
+    let dataSets: {label: string, data: Array<number>, fill: boolean, borderColor: string, backgroundColor: string}[] = [];
     for(const [x, y] of dataMap.entries()) {
       dataSets.push({
         label: `${breakdown} ${x}`,
         data: y,
-        fill: true,
-        backGroundColor: "rgba(75,192,192,0.2)"
+        fill: false,
+        borderColor: colors[counter],
+        backgroundColor: colors[counter]
       })
+      counter++;
     }
 
     return {

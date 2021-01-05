@@ -6,7 +6,12 @@ function LineChart({testData}):JSX.Element {
     labels: testData.labels,
     datasets: testData.datasets
   };
-  return <Line data={data}/>
+  return <div className="item-container" style={{marginLeft:"5px"}}>
+      <Line data={data} options={{
+        responsive: true,
+        maintainAspectRatio: true,
+      }}/>
+    </div>
 }
 
 export default LineChart;

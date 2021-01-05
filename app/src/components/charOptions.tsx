@@ -2,12 +2,12 @@ import React from 'react';
 
 const Options = ({changeChart, current}):JSX.Element => {
     const styleOptions: object = {
-        'Line': '',
-        'Bar': '',
-        'Pie': ''
+        'Line': 'chart-type',
+        'Bar': 'chart-type',
+        'Pie': 'chart-type'
     }
     if(styleOptions[current] !== undefined) {
-        styleOptions[current] = 'black-option'
+        styleOptions[current] = 'black-option chart-type'
     }
     return(
     <div className="options-container" onClick={(ev) => {

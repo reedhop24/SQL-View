@@ -11,14 +11,14 @@ router.use(upload());
 const con = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
-    password : 'password',
+    password : '',
     database: 'user_tables'
 });
 
 router.post('/table', (req, res) => {
     const sheet = req.files ? XLSX.read(req.files.file.data, {type:'buffer'}) : null;
     if(sheet === null) {
-        res.json({'error': 'No file specified'});
+        res.status(200).json({'error': 'No file specified'});
         return;
     }
 
@@ -64,6 +64,8 @@ router.post('/table', (req, res) => {
                             tableName = tableArr.join('_');
                         }
                         createTable();
+                    } else {
+                        res.status(200).json({'error': err})
                     }
                 } else {
                     for(let i = 0; i < rows.length; i++) {
@@ -78,14 +80,8 @@ router.post('/table', (req, res) => {
                     })
                 }
             });
-            return 'success';
         }
         const tableRes = createTable();
-        if(tableRes !== 'success') {
-            res.status(500).json({
-                'error': tableRes
-            })
-        }
 });
 
 module.exports = router;

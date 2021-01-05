@@ -2,14 +2,13 @@ const express = require('express');
 const router = express();
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
-const { restart } = require('nodemon');
 
 router.use(bodyParser.urlencoded({ extended: true }));
 
 const con = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
-    password : 'password',
+    password : '',
     database: 'user_tables'
 });
 
