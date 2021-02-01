@@ -3,7 +3,7 @@
 ### Overview
 ##### The idea for this project came to me while I was working on finding an analytics platform for IBQ Systems. We wanted the ability to integrate our SQL database with a visual analytics platform (we chose DataPine). However during our internal discussions, it was said that there are security concerns around exposing our databases to these platforms. Therefore, I thought it would be a cool project to still have the visual analytics tools but without it being linked to a DB. Instead you can just export a .csv file from your DB and then query and and generate charts from the .csv file. 
 
-### Run on your local machine
+### Installation
 ##### install npm/node
 ##### git clone
 ##### cd into SQL-View
